@@ -1,0 +1,101 @@
+<!doctype html>
+<html ng-app="tinyHouseApp">
+  <head>
+    <meta charset="UTF-8">
+    <title>Tiny house</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-sanitize.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body ng-controller="TinyHouseController">
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
+      <text x="{{m.padding/2}}" y="{{-m.padding/2}}">
+        Gulv
+      </text>
+ 
+      <rect ng-repeat="t in m.floor"
+            width="{{t.width}}" height="{{t.height}}"
+            x="{{t.x}}" y="{{t.y}}" class="{{t.class}}" title="{{m.length}}">
+        <title>{{max(t.width, t.height)}} mm ({{t.x}},{{t.y}})</title>
+      </rect>
+    </svg>
+
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
+      <text x="{{m.padding/2}}" y="{{-m.padding/2}}">
+        Tag
+      </text>
+
+      <rect ng-repeat="t in m.roof"
+            width="{{t.width}}" height="{{t.height}}"
+            x="{{t.x}}" y="{{t.y}}" class="{{t.class}}" title="{{m.length}}">
+        <title>{{max(t.width, t.height)}} mm ({{t.x}},{{t.y}})</title>
+      </rect>
+    </svg>
+
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
+      <text x="{{m.padding/2}}" y="{{-m.padding/2}}">
+        Gavl (vest)
+      </text>
+
+      <rect ng-repeat="t in m.westWall"
+            width="{{t.width}}" height="{{t.height}}"
+            x="{{t.x}}" y="{{t.y}}" class="{{t.class}}" title="{{m.length}}">
+        <title>{{max(t.width, t.height)}} mm ({{t.x}},{{t.y}})</title>
+      </rect>
+    </svg>
+
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
+      <text x="{{m.padding/2}}" y="{{-m.padding/2}}">
+        Gavl (øst)
+      </text>
+
+      <rect ng-repeat="t in m.eastWall"
+            width="{{t.width}}" height="{{t.height}}"
+            x="{{t.x}}" y="{{t.y}}" class="{{t.class}}" title="{{m.length}}">
+        <title>{{max(t.width, t.height)}} mm ({{t.x}},{{t.y}})</title>
+      </rect>
+    </svg>
+
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
+      <text x="{{m.padding/2}}" y="{{-m.padding/2}}">
+        Væg (syd)
+      </text>
+
+      <rect ng-repeat="t in m.southWall"
+            width="{{t.width}}" height="{{t.height}}"
+            x="{{t.x}}" y="{{t.y}}" class="{{t.class}}" title="{{m.length}}">
+        <title>{{max(t.width, t.height)}} mm ({{t.x}},{{t.y}})</title>
+      </rect>
+    </svg>
+
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
+      <text x="{{m.padding/2}}" y="{{-m.padding/2}}">
+        Væg (nord)
+      </text>
+
+      <rect ng-repeat="t in m.northWall"
+            width="{{t.width}}" height="{{t.height}}"
+            x="{{t.x}}" y="{{t.y}}" class="{{t.class}}" title="{{m.length}}">
+        <title>{{max(t.width, t.height)}} mm ({{t.x}},{{t.y}})</title>
+      </rect>
+    </svg>
+
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
+      <text x="0" y="{{m.padding/2}}">
+        120mm
+      </text>
+      <rect x="400" y="{{m.padding/2-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="wood-120" />
+
+      <text x="0" y="{{m.padding/2+200}}">
+        195mm
+      </text>
+      <rect x="400" y="{{m.padding/2+200-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="wood-195" />
+
+      <text x="0" y="{{m.padding/2+400}}">
+        295mm
+      </text>
+      <rect x="400" y="{{m.padding/2+400-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="wood-295" />
+    </svg>
+  </body>
+</html>
