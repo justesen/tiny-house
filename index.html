@@ -9,7 +9,64 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body ng-controller="TinyHouseController">
-    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="700">
+      <text x="200" y="{{m.padding/2}}">
+        95mm
+      </text>
+      <rect x="0" y="{{m.padding/2-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="wood-95" />
+
+      <text x="200" y="{{m.padding/2+200}}">
+        120mm
+      </text>
+      <rect x="0" y="{{m.padding/2+200-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="wood-120" />
+
+      <text x="200" y="{{m.padding/2+400}}">
+        195mm
+      </text>
+      <rect x="0" y="{{m.padding/2+400-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="wood-195" />
+
+      <text x="200" y="{{m.padding/2+600}}">
+        295mm
+      </text>
+      <rect x="0" y="{{m.padding/2+600-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="wood-295" />
+
+      <text x="200" y="{{m.padding/2+800}}">
+        25mm x 50mm afstandsliste
+      </text>
+      <rect x="0" y="{{m.padding/2+800-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="wood-25" />
+
+      <text x="200" y="{{m.padding/2+1000}}">
+        OSB plade
+      </text>
+      <rect x="0" y="{{m.padding/2+1000-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="osb" />
+
+      <text x="200" y="{{m.padding/2+1200}}">
+        Krydsfiner
+      </text>
+      <rect x="0" y="{{m.padding/2+1200-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="kf" />
+    </svg>
+
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="700">
+      <text x="{{m.padding/2}}" y="{{-m.padding/2}}">
+        Profil
+      </text>
+
+      <polygon points="0,0 {{m.width}},75 {{m.width}},195 0,195" class="wood-195">
+        <title>{{m.width}}mm bred, fald fra 195mm til 120mm (0,0)</title>
+      </polygon>
+
+      <polygon points="-50,-24 {{m.width+50}},51 {{m.width+50}},76 -50,-1" class="wood-25">
+        <title>{{m.width}}mm bred, fald fra 195mm til 120mm (0,0)</title>
+      </polygon>
+ 
+      <rect ng-repeat="t in m.profile"
+            width="{{t.width}}" height="{{t.height}}"
+            x="{{t.x}}" y="{{t.y}}" class="{{t.class}}" title="{{m.length}}">
+        <title>{{t.width}}mm x {{t.height}}mm ({{t.x}},{{t.y}})</title>
+      </rect>
+    </svg>
+
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="700">
       <text x="{{m.padding/2}}" y="{{-m.padding/2}}">
         Gulv
       </text>
@@ -21,7 +78,7 @@
       </rect>
     </svg>
 
-    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="700">
       <text x="{{m.padding/2}}" y="{{-m.padding/2}}">
         Tag
       </text>
@@ -33,7 +90,7 @@
       </rect>
     </svg>
 
-    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="700">
       <text x="{{m.padding/2}}" y="{{-m.padding/2}}">
         Gavl (vest)
       </text>
@@ -45,7 +102,7 @@
       </rect>
     </svg>
 
-    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="700">
       <text x="{{m.padding/2}}" y="{{-m.padding/2}}">
         Gavl (øst)
       </text>
@@ -57,7 +114,7 @@
       </rect>
     </svg>
 
-    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="700">
       <text x="{{m.padding/2}}" y="{{-m.padding/2}}">
         Væg (syd)
       </text>
@@ -69,7 +126,7 @@
       </rect>
     </svg>
 
-    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
+    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="700">
       <text x="{{m.padding/2}}" y="{{-m.padding/2}}">
         Væg (nord)
       </text>
@@ -79,23 +136,6 @@
             x="{{t.x}}" y="{{t.y}}" class="{{t.class}}" title="{{m.length}}">
         <title>{{max(t.width, t.height)}} mm ({{t.x}},{{t.y}})</title>
       </rect>
-    </svg>
-
-    <svg viewBox="-{{m.padding}} -{{m.padding}} {{m.length+2*m.padding}} {{m.width+2*m.padding}}" width="1200" height="600">
-      <text x="0" y="{{m.padding/2}}">
-        120mm
-      </text>
-      <rect x="400" y="{{m.padding/2-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="wood-120" />
-
-      <text x="0" y="{{m.padding/2+200}}">
-        195mm
-      </text>
-      <rect x="400" y="{{m.padding/2+200-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="wood-195" />
-
-      <text x="0" y="{{m.padding/2+400}}">
-        295mm
-      </text>
-      <rect x="400" y="{{m.padding/2+400-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="wood-295" />
     </svg>
   </body>
 </html>

@@ -16,6 +16,30 @@
   opacity: 0.5;
 }
 
+.wood-95 {
+  fill: yellow;
+  stroke: black;
+  opacity: 0.5;
+}
+
+.wood-25 {
+  fill: skyblue;
+  stroke: black;
+  opacity: 0.5;
+}
+
+.osb {
+  fill: seagreen;
+  stroke: black;
+  opacity: 0.5;
+}
+
+.kf {
+  fill: darkseagreen;
+  stroke: black;
+  opacity: 0.5;
+}
+
 text {
   fill: black;
   font-size: 100px;

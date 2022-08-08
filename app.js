@@ -3,7 +3,7 @@ angular.module("tinyHouseApp", ["ngSanitize"])
     const m = {};
     m.treeThick = 45;
     m.wallWidth = 120;
-    m.width = 2300+4*m.treeThick;
+    m.width = 2440;
     m.length = 5900;
     m.height = 2400;
     m.padding = 100;
@@ -36,6 +36,80 @@ angular.module("tinyHouseApp", ["ngSanitize"])
       class: "wood-120"
     })
 
+    m.profile = [
+      // Venstre side
+      {
+        width: 120, height: m.treeThick,
+        x: 0, y: 195,
+        class: "wood-120"
+      },
+      {
+        width: 120, height: m.height - 2*m.treeThick,
+        x: 0, y: 195 + m.treeThick,
+        class: "wood-120"
+      },
+      {
+        width: 120, height: m.treeThick,
+        x: 0, y: 195 + m.treeThick + m.height - 2*m.treeThick,
+        class: "wood-120"
+      },
+      {
+        width: m.treeThick, height: 295,
+        x: 0, y: 195 + m.height + 12,
+        class: "wood-295"
+      },
+      {
+        width: m.treeThick, height: 295,
+        x: m.treeThick, y: 195 + m.height + 12,
+        class: "wood-295"
+      },
+      {
+        width: m.treeThick, height: 95,
+        x: 2*m.treeThick, y: 195 + m.height + 12 + 120 + 12,
+        class: "wood-195"
+      },
+      {
+        width: 12, height: m.height - 12,
+        x: 120, y: 195 + 12,
+        class: "kf"
+      },
+    ];
+    m.profile = m.profile.concat(
+      m.profile.map(t => Object.assign({}, t, {x: m.width - t.x - t.width}))
+    ).concat([
+      // Tværgående
+      {
+        width: m.width, height: 12,
+        x: 0, y: 195 + m.height,
+        class: "osb"
+      },
+      {
+        width: m.width - 4*m.treeThick, height: 12,
+        x: 2*m.treeThick, y: 195 + m.height + 12 + 120,
+        class: "osb"
+      },
+      {
+        width: m.width - 2*120, height: 12,
+        x: 120, y: 195,
+        class: "kf"
+      },
+      {
+        width: m.width - 4*m.treeThick, height: 120,
+        x: 2*m.treeThick, y: 195 + m.height + 12,
+        class: "wood-120"
+      },
+      { // Klemmelister
+        width: 25, height: m.height + 195 + 12 + 295,
+        x: -25, y: 0,
+        class: "wood-25"
+      },
+      {
+        width: 25, height: m.height + 120 + 12 + 295,
+        x: m.width, y: 75,
+        class: "wood-25"
+      }
+    ]);
+
     m.floor = [
       {
         width: m.length, height: m.treeThick,
@@ -60,12 +134,12 @@ angular.module("tinyHouseApp", ["ngSanitize"])
       {
         width: m.length-2*m.treeThick, height: m.treeThick,
         x: m.treeThick, y: 2*m.treeThick,
-        class: "wood-120"
+        class: "wood-95"
       },
       {
         width: m.length-2*m.treeThick, height: m.treeThick,
         x: m.treeThick, y: m.width-3*m.treeThick,
-        class: "wood-120"
+        class: "wood-95"
       }
     ].concat([
       {
