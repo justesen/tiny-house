@@ -27,12 +27,12 @@ angular.module("tinyHouseApp", ["ngSanitize"])
     });
     const leftWindow = (w, x) => ({
       width: m.treeThick, height: w.height,
-      x: x + (1200 - w.width)/2 - m.treeThick, y: yBelowWindow(w) - w.height - m.treeThick,
+      x: x + (1200 - w.width), y: yBelowWindow(w) - w.height - m.treeThick,
       class: "wood-120"
     });
     const rightWindow = (w, x) => ({
       width: m.treeThick, height: w.height,
-      x: leftWindow(w, x).x + w.width + m.treeThick, y: yBelowWindow(w) - w.height - m.treeThick,
+      x: x + w.width + m.treeThick, y: yBelowWindow(w) - w.height - m.treeThick,
       class: "wood-120"
     })
 
@@ -66,7 +66,7 @@ angular.module("tinyHouseApp", ["ngSanitize"])
       {
         width: m.treeThick, height: 95,
         x: 2*m.treeThick, y: 195 + m.height + 12 + 120 + 12,
-        class: "wood-195"
+        class: "wood-95"
       },
       {
         width: 12, height: m.height - 12,
@@ -103,9 +103,19 @@ angular.module("tinyHouseApp", ["ngSanitize"])
         x: -25, y: 0,
         class: "wood-25"
       },
-      {
+      { // Yderbeklædning
+        width: 12, height: m.height + 195 + 12 + 295,
+        x: -37, y: 0,
+        class: "wood-25"
+      },
+      { // Klemmelister
         width: 25, height: m.height + 120 + 12 + 295,
         x: m.width, y: 75,
+        class: "wood-25"
+      },
+      { // Yderbeklædning
+        width: 12, height: m.height + 120 + 12 + 295,
+        x: m.width + 25, y: 75,
         class: "wood-25"
       }
     ]);
@@ -172,8 +182,8 @@ angular.module("tinyHouseApp", ["ngSanitize"])
 
     m.westWallWindow = {
       width: 1100,
-      height: 600,
-      fromFloor: 1400,
+      height: 800,
+      fromFloor: 1000,
     }
 
     m.westWall = [
@@ -223,8 +233,8 @@ angular.module("tinyHouseApp", ["ngSanitize"])
     ];
 
     m.eastWallWindow = {
-      width: 500,
-      height: 900,
+      width: 600,
+      height: 600,
       fromFloor: 1300,
     }
 
@@ -261,8 +271,8 @@ angular.module("tinyHouseApp", ["ngSanitize"])
       },
       topWindow(m.eastWallWindow, 600 + m. treeThick),
       bottomWindow(m.eastWallWindow, 600 + m. treeThick),
-      leftWindow(m.eastWallWindow, 600 + m. treeThick),
-      rightWindow(m.eastWallWindow, 600 + m. treeThick),
+      leftWindow(m.eastWallWindow, 300 + m. treeThick),
+      rightWindow(m.eastWallWindow, 900 + m. treeThick),
       { // Regal 4
         width: m.treeThick, height: m.height - 2*m.treeThick,
         x: 600*3, y: m.treeThick,
@@ -281,8 +291,8 @@ angular.module("tinyHouseApp", ["ngSanitize"])
     }
 
     m.southWindow = {
-      width: 900,
-      height: 900,
+      width: 800,
+      height: 1100,
       fromFloor: 900
     }
 
@@ -374,14 +384,14 @@ angular.module("tinyHouseApp", ["ngSanitize"])
     ]
 
     m.northWindow = {
-      width: 900,
-      height: 1100,
-      fromFloor: 800
+      width: 1140,
+      height: 1750,
+      fromFloor: 400
     }
 
     m.kitchenWindow = {
-      width: 900,
-      height: 700,
+      width: 1100,
+      height: 550,
       fromFloor: 1100
     }
 
@@ -433,8 +443,6 @@ angular.module("tinyHouseApp", ["ngSanitize"])
       },
       topWindow(m.northWindow, m.wallWidth + 3*600 + m.treeThick),
       bottomWindow(m.northWindow, m.wallWidth + 3*600 + m.treeThick),
-      leftWindow(m.northWindow, m.wallWidth + 3*600 + m.treeThick),
-      // rightWindow(m.northWindow, m.wallWidth + 3*600 + m.treeThick),
       { // Regal 7
         width: m.treeThick, height: m.height - 2*m.treeThick,
         x: m.wallWidth + 5*600, y: m.treeThick,
@@ -447,7 +455,7 @@ angular.module("tinyHouseApp", ["ngSanitize"])
       },
       topWindow(m.kitchenWindow, m.length - m.treeThick - m.wallWidth - 4*600 + m.treeThick),
       bottomWindow(m.kitchenWindow, m.length - m.treeThick - m.wallWidth - 4*600 + m.treeThick),
-      Object.assign(leftWindow(m.kitchenWindow, m.length - m.treeThick - m.wallWidth - 4*600 + m.treeThick), {x: 3590}),
+      leftWindow(m.kitchenWindow, m.length - m.treeThick - m.wallWidth - 4*600 + m.treeThick),
       { // Regal 9
         width: m.treeThick, height: aboveWindow(m.kitchenWindow),
         x: m.length - m.treeThick - m.wallWidth - 3*600, y: m.treeThick,
