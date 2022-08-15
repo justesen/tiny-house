@@ -36,12 +36,12 @@
       <rect x="0" y="{{m.padding/2+800-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="wood-25" />
 
       <text x="200" y="{{m.padding/2+1000}}">
-        12mm OSB-plade
+        {{m.osb}}mm OSB-plade
       </text>
       <rect x="0" y="{{m.padding/2+1000-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="osb" />
 
       <text x="200" y="{{m.padding/2+1200}}">
-        12mm krydsfinerplade
+        {{m.kf}}mm krydsfinerplade
       </text>
       <rect x="0" y="{{m.padding/2+1200-70}}" width="{{2*m.treeThick}}" height="{{2*m.treeThick}}" class="kf" />
     </svg>
@@ -55,8 +55,8 @@
         <title>{{m.width}}mm bred, fald fra 195mm til 120mm (0,0)</title>
       </polygon>
 
-      <polygon points="-50,-24 {{m.width+50}},51 {{m.width+50}},76 -50,-1" class="wood-25">
-        <title>{{m.width}}mm bred, fald fra 195mm til 120mm (0,0)</title>
+      <polygon points="-100,-24 {{m.width+100}},51 {{m.width+100}},76 -100,-1" class="wood-25">
+        <title>{{m.width+2*100}}mm</title>
       </polygon>
  
       <rect ng-repeat="t in m.profile"

@@ -7,6 +7,8 @@ angular.module("tinyHouseApp", ["ngSanitize"])
     m.length = 5900;
     m.height = 2400;
     m.padding = 100;
+    m.osb =  18;
+    m.kf = 12;
 
     const range = (size, startAt = 0) => [...Array(size).keys()].map(i => i + startAt);
     $scope.max = Math.max;
@@ -55,22 +57,22 @@ angular.module("tinyHouseApp", ["ngSanitize"])
       },
       {
         width: m.treeThick, height: 295,
-        x: 0, y: 195 + m.height + 12,
+        x: 0, y: 195 + m.height + m.osb,
         class: "wood-295"
       },
       {
         width: m.treeThick, height: 295,
-        x: m.treeThick, y: 195 + m.height + 12,
+        x: m.treeThick, y: 195 + m.height + m.osb,
         class: "wood-295"
       },
       {
         width: m.treeThick, height: 95,
-        x: 2*m.treeThick, y: 195 + m.height + 12 + 120 + 12,
+        x: 2*m.treeThick, y: 195 + m.height + m.osb + 120 + m.osb,
         class: "wood-95"
       },
       {
-        width: 12, height: m.height - 12,
-        x: 120, y: 195 + 12,
+        width: m.kf, height: m.height - m.osb,
+        x: 120, y: 195 + m.osb,
         class: "kf"
       },
     ];
@@ -79,44 +81,44 @@ angular.module("tinyHouseApp", ["ngSanitize"])
     ).concat([
       // Tværgående
       {
-        width: m.width, height: 12,
+        width: m.width, height: m.osb,
         x: 0, y: 195 + m.height,
         class: "osb"
       },
       {
-        width: m.width - 4*m.treeThick, height: 12,
-        x: 2*m.treeThick, y: 195 + m.height + 12 + 120,
+        width: m.width - 4*m.treeThick, height: m.osb,
+        x: 2*m.treeThick, y: 195 + m.height + m.osb + 120,
         class: "osb"
       },
       {
-        width: m.width - 2*120, height: 12,
+        width: m.width - 2*120, height: m.osb,
         x: 120, y: 195,
-        class: "kf"
+        class: "osb"
       },
       {
         width: m.width - 4*m.treeThick, height: 120,
-        x: 2*m.treeThick, y: 195 + m.height + 12,
+        x: 2*m.treeThick, y: 195 + m.height + m.osb,
         class: "wood-120"
       },
       { // Klemmelister
-        width: 25, height: m.height + 195 + 12 + 295,
+        width: 25, height: m.height + 195 + m.osb + 295,
         x: -25, y: 0,
         class: "wood-25"
       },
       { // Yderbeklædning
-        width: 12, height: m.height + 195 + 12 + 295,
+        width: m.kf, height: m.height + 195 + m.osb + 295,
         x: -37, y: 0,
-        class: "wood-25"
+        class: "kf"
       },
       { // Klemmelister
-        width: 25, height: m.height + 120 + 12 + 295,
+        width: 25, height: m.height + 120 + m.osb + 295,
         x: m.width, y: 75,
         class: "wood-25"
       },
       { // Yderbeklædning
-        width: 12, height: m.height + 120 + 12 + 295,
+        width: m.kf, height: m.height + 120 + m.osb + 295,
         x: m.width + 25, y: 75,
-        class: "wood-25"
+        class: "kf"
       }
     ]);
 
