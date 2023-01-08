@@ -4,11 +4,13 @@ angular.module("tinyHouseApp", ["ngSanitize"])
     m.treeThick = 45;
     m.wallWidth = 120;
     m.width = 2440;
-    m.length = 5900;
-    m.height = 2400;
+    m.length = 6000;
     m.padding = 100;
     m.osb =  18;
     m.kf = 12;
+    m.windowGap = 10;
+    m.largeWindowGap = 12;
+    m.height = 2428+m.windowGap+m.treeThick;
 
     const range = (size, startAt = 0) => [...Array(size).keys()].map(i => i + startAt);
     $scope.max = Math.max;
@@ -29,12 +31,12 @@ angular.module("tinyHouseApp", ["ngSanitize"])
     });
     const leftWindow = (w, x) => ({
       width: m.treeThick, height: w.height,
-      x: x + (1200 - w.width), y: yBelowWindow(w) - w.height - m.treeThick,
+      x: x + (1200 - w.width) - 2*45, y: yBelowWindow(w) - w.height - m.treeThick,
       class: "wood-120"
     });
     const rightWindow = (w, x) => ({
       width: m.treeThick, height: w.height,
-      x: x + w.width + m.treeThick, y: yBelowWindow(w) - w.height - m.treeThick,
+      x: x + (600 - w.width) + w.width + m.treeThick, y: yBelowWindow(w) - w.height - m.treeThick,
       class: "wood-120"
     })
 
@@ -71,8 +73,8 @@ angular.module("tinyHouseApp", ["ngSanitize"])
         class: "wood-95"
       },
       {
-        width: m.kf, height: m.height - m.osb,
-        x: 120, y: 195 + m.osb,
+        width: m.kf, height: m.height - m.kf,
+        x: 120, y: 195 + m.kf,
         class: "kf"
       },
     ];
@@ -91,14 +93,19 @@ angular.module("tinyHouseApp", ["ngSanitize"])
         class: "osb"
       },
       {
-        width: m.width - 2*120, height: m.osb,
+        width: m.width - 2*120, height: m.kf,
         x: 120, y: 195,
-        class: "osb"
+        class: "kf"
       },
       {
         width: m.width - 4*m.treeThick, height: 120,
         x: 2*m.treeThick, y: 195 + m.height + m.osb,
         class: "wood-120"
+      },
+      {
+        width: m.width - 6*m.treeThick, height: 50,
+        x: 3*m.treeThick, y: 195 + m.height + m.osb + 120 + m.osb,
+        class: "wood-25"
       },
       { // Klemmelister
         width: 25, height: m.height + 195 + m.osb + 295,
@@ -183,9 +190,9 @@ angular.module("tinyHouseApp", ["ngSanitize"])
     }]);
 
     m.westWallWindow = {
-      width: 1100,
-      height: 800,
-      fromFloor: 1000,
+      width: 1076 + 2*m.windowGap,
+      height: 774 + 2*m.windowGap,
+      fromFloor: 1500,
     }
 
     m.westWall = [
@@ -206,25 +213,32 @@ angular.module("tinyHouseApp", ["ngSanitize"])
       },
       { // Regal 2
         width: m.treeThick, height: m.height - 2*m.treeThick,
-        x: 600, y: m.treeThick,
+        x: 507, y: m.treeThick,
         class: "wood-120"
       },
-      topWindow(m.westWallWindow, 600 + m.treeThick),
-      bottomWindow(m.westWallWindow, 600 + m.treeThick),
-      leftWindow(m.westWallWindow, 600 + m.treeThick),
+      {
+        width: m.westWallWindow.width, height: m.treeThick,
+        x: 507 + m.treeThick, y: m.height - m.westWallWindow.fromFloor - m.westWallWindow.height - m.treeThick,
+        class: "wood-120"
+      },
+      {
+        width: m.westWallWindow.width, height: m.treeThick,
+        x: 507 + m.treeThick, y: m.height - m.westWallWindow.fromFloor,
+        class: "wood-120"
+      },
       { // Regal 3 (over vindue)
         width: m.treeThick, height: aboveWindow(m.westWallWindow),
-        x: 600*2, y: m.treeThick,
+        x: 507+600, y: m.treeThick,
         class: "wood-120"
       },
       {  // Regal 3 (under vindue)
         width: m.treeThick, height: belowWindow(m.westWallWindow),
-        x: 600*2, y: yBelowWindow(m.westWallWindow),
+        x: 507+600, y: yBelowWindow(m.westWallWindow),
         class: "wood-120"
       },
       { // Regal 4
         width: m.treeThick, height: m.height - 2*m.treeThick,
-        x: 600*3, y: m.treeThick,
+        x: 507 + m.treeThick + m.westWallWindow.width, y: m.treeThick,
         class: "wood-120"
       },
       { // Regal 5
@@ -235,8 +249,8 @@ angular.module("tinyHouseApp", ["ngSanitize"])
     ];
 
     m.eastWallWindow = {
-      width: 600,
-      height: 600,
+      width: 399 + 2*m.windowGap,
+      height: 549 + 2*m.windowGap,
       fromFloor: 1300,
     }
 
@@ -273,8 +287,16 @@ angular.module("tinyHouseApp", ["ngSanitize"])
       },
       topWindow(m.eastWallWindow, 600 + m. treeThick),
       bottomWindow(m.eastWallWindow, 600 + m. treeThick),
-      leftWindow(m.eastWallWindow, 300 + m. treeThick),
-      rightWindow(m.eastWallWindow, 900 + m. treeThick),
+      {
+        width: m.treeThick, height: m.eastWallWindow.height,
+        x: 890 - m.treeThick, y: yBelowWindow(m.eastWallWindow) - m.eastWallWindow.height - m.treeThick,
+        class: "wood-120"
+      },
+      {
+        width: m.treeThick, height: m.eastWallWindow.height,
+        x: 890 + m.eastWallWindow.width, y: yBelowWindow(m.eastWallWindow) - m.eastWallWindow.height - m.treeThick,
+        class: "wood-120"
+      },
       { // Regal 4
         width: m.treeThick, height: m.height - 2*m.treeThick,
         x: 600*3, y: m.treeThick,
@@ -288,14 +310,14 @@ angular.module("tinyHouseApp", ["ngSanitize"])
     ];
 
     m.door = {
-      width: 910,
-      height: 2130,
+      width: 908 + 2*11,
+      height: 2428 + m.windowGap,
     }
 
     m.southWindow = {
-      width: 800,
-      height: 1100,
-      fromFloor: 900
+      width: 774 + 2*m.largeWindowGap,
+      height: 1076 + 2*m.largeWindowGap,
+      fromFloor: 950
     }
 
     m.southWall = [
@@ -331,17 +353,12 @@ angular.module("tinyHouseApp", ["ngSanitize"])
       },
       { // Regal 5
         width: m.treeThick, height: m.height - 2*m.treeThick,
-        x: 1800, y: m.treeThick,
-        class: "wood-120"
-      },
-      { // Over dør
-        width: m.door.width, height: m.treeThick,
-        x: 1800 + m.treeThick, y: m.height - m.treeThick*2 - m.door.height,
+        x: m.wallWidth + 3*600, y: m.treeThick,
         class: "wood-120"
       },
       { // Regal 6
         width: m.treeThick, height: m.height - 2*m.treeThick,
-        x: 1800 + m.door.width + m.treeThick, y: m.treeThick,
+        x: m.wallWidth + 3*600 + m.door.width + m.treeThick, y: m.treeThick,
         class: "wood-120"
       },
       { // Regal 7 (over vindue)
@@ -354,8 +371,16 @@ angular.module("tinyHouseApp", ["ngSanitize"])
         x: 1800 + m.door.width + m.treeThick + 600, y: yBelowWindow(m.southWindow),
         class: "wood-120"
       },
-      topWindow(m.southWindow, 1800 + m.door.width + 2*m.treeThick),
-      bottomWindow(m.southWindow, 1800 + m.door.width + 2*m.treeThick),
+      {
+        width: 1800 + m.door.width + m.treeThick + 2*600 - (m.wallWidth + 3*600 + m.door.width + 2*m.treeThick), height: m.treeThick,
+        x: m.wallWidth + 3*600 + m.door.width + 2*m.treeThick, y: m.height - m.southWindow.fromFloor - m.southWindow.height - m.treeThick,
+        class: "wood-120"
+      },
+      {
+        width: 1800 + m.door.width + m.treeThick + 2*600 - (m.wallWidth + 3*600 + m.door.width + 2*m.treeThick), height: m.treeThick,
+        x: m.wallWidth + 3*600 + m.door.width + 2*m.treeThick, y: m.height - m.southWindow.fromFloor,
+        class: "wood-120"
+      },
       leftWindow(m.southWindow, 1800 + m.door.width + 2*m.treeThick),
       // rightWindow(m.southWindow, 1800 + m.door.width + 2*m.treeThick),
       { // Regal 8
@@ -370,12 +395,20 @@ angular.module("tinyHouseApp", ["ngSanitize"])
       },
       { // Regal 10
         width: m.treeThick, height: m.height - 2*m.treeThick,
-        x: 1800 + m.door.width + m.treeThick + 4*600, y: m.treeThick,
+        // x: 1800 + m.door.width + m.treeThick + 4*600, y: m.treeThick,
+        x: m.length - m.treeThick - m.wallWidth - 800, y: m.treeThick,
+        class: "wood-120"
+      },
+      { // Regal 10
+        width: m.treeThick, height: m.height - 2*m.treeThick,
+        // x: 1800 + m.door.width + m.treeThick + 4*600, y: m.treeThick,
+        x: m.length - m.treeThick - m.wallWidth - 600, y: m.treeThick,
         class: "wood-120"
       },
       { // Regal 11
         width: m.treeThick, height: m.height - 2*m.treeThick,
-        x: 1800 + m.door.width + m.treeThick + 5*600, y: m.treeThick,
+        // x: 1800 + m.door.width + m.treeThick + 5*600, y: m.treeThick,
+        x: m.length - m.treeThick - m.wallWidth, y: m.treeThick,
         class: "wood-120"
       },
       { // Regal 12
@@ -386,15 +419,15 @@ angular.module("tinyHouseApp", ["ngSanitize"])
     ]
 
     m.northWindow = {
-      width: 1140,
-      height: 1750,
-      fromFloor: 400
+      width: 838 + 2*m.largeWindowGap,
+      height: 1149 + 2*m.largeWindowGap,
+      fromFloor: 950
     }
 
     m.kitchenWindow = {
-      width: 1100,
-      height: 550,
-      fromFloor: 1100
+      width: 1074 + 2*m.largeWindowGap,
+      height: 511 + 2*m.largeWindowGap,
+      fromFloor: 1300
     }
 
     m.northWall = [
@@ -438,52 +471,60 @@ angular.module("tinyHouseApp", ["ngSanitize"])
         x: m.wallWidth + 4*600, y: m.treeThick,
         class: "wood-120"
       },
-      { // Regal 6
+      { // Regal 7
         width: m.treeThick, height: belowWindow(m.northWindow),
         x: m.wallWidth + 4*600, y: yBelowWindow(m.northWindow),
         class: "wood-120"
       },
       topWindow(m.northWindow, m.wallWidth + 3*600 + m.treeThick),
       bottomWindow(m.northWindow, m.wallWidth + 3*600 + m.treeThick),
-      { // Regal 7
-        width: m.treeThick, height: m.height - 2*m.treeThick,
-        x: m.wallWidth + 5*600, y: m.treeThick,
-        class: "wood-120"
-      },
       { // Regal 8
         width: m.treeThick, height: m.height - 2*m.treeThick,
-        x: m.length - m.treeThick - m.wallWidth - 4*600, y: m.treeThick,
-        class: "wood-120"
-      },
-      topWindow(m.kitchenWindow, m.length - m.treeThick - m.wallWidth - 4*600 + m.treeThick),
-      bottomWindow(m.kitchenWindow, m.length - m.treeThick - m.wallWidth - 4*600 + m.treeThick),
-      leftWindow(m.kitchenWindow, m.length - m.treeThick - m.wallWidth - 4*600 + m.treeThick),
-      { // Regal 9
-        width: m.treeThick, height: aboveWindow(m.kitchenWindow),
-        x: m.length - m.treeThick - m.wallWidth - 3*600, y: m.treeThick,
+        x: m.wallWidth + 3*600 + m.northWindow.width + m.treeThick, y: m.treeThick,
         class: "wood-120"
       },
       { // Regal 9
-        width: m.treeThick, height: belowWindow(m.kitchenWindow),
-        x: m.length - m.treeThick - m.wallWidth - 3*600, y: yBelowWindow(m.kitchenWindow),
-        class: "wood-120"
-      },
-      { // Regal 10
         width: m.treeThick, height: m.height - 2*m.treeThick,
-        x: m.length - m.treeThick - m.wallWidth - 2*600, y: m.treeThick,
+        x: m.wallWidth + 3*600 + m.northWindow.width + m.treeThick + 600, y: m.treeThick,
+        class: "wood-120"
+      },
+      topWindow(m.kitchenWindow, m.wallWidth + 3*600 + m.northWindow.width + 2*m.treeThick + 600),
+      bottomWindow(m.kitchenWindow, m.wallWidth + 3*600 + m.northWindow.width + 2*m.treeThick + 600),
+      { // Regal 10
+        width: m.treeThick, height: aboveWindow(m.kitchenWindow),
+        x: m.wallWidth + 3*600 + m.northWindow.width + m.treeThick + 2*600, y: m.treeThick,
         class: "wood-120"
       },
       { // Regal 11
-        width: m.treeThick, height: m.height - 2*m.treeThick,
-        x: m.length - m.treeThick - m.wallWidth - 600, y: m.treeThick,
+        width: m.treeThick, height: belowWindow(m.kitchenWindow),
+        x: m.wallWidth + 3*600 + m.northWindow.width + m.treeThick + 2*600, y: yBelowWindow(m.kitchenWindow),
         class: "wood-120"
       },
       { // Regal 12
         width: m.treeThick, height: m.height - 2*m.treeThick,
-        x: m.length - m.treeThick - m.wallWidth, y: m.treeThick,
+        aaaaaaaaaazzx: m.wallWidth + 3*600 + m.northWindow.width + 2*m.treeThick + 600 + m.kitchenWindow.width, y: m.treeThick,
+        // x: m.length - m.treeThick - m.wallWidth - 800, y: m.treeThick,
+        class: "wood-120"
+      },
+      { // Regal 12
+        width: m.treeThick, height: m.height - 2*m.treeThick,
+        // x: m.wallWidth + 3*600 + m.northWindow.width + 2*m.treeThick + 600 + m.kitchenWindow.width, y: m.treeThick,
+        x: m.length - m.treeThick - m.wallWidth - 800, y: m.treeThick,
         class: "wood-120"
       },
       { // Regal 13
+        width: m.treeThick, height: m.height - 2*m.treeThick,
+        // x: m.wallWidth + 3*600 + m.northWindow.width + 2*m.treeThick + 2*600 + m.kitchenWindow.width, y: m.treeThick,
+        x: m.length - m.treeThick - m.wallWidth - 600, y: m.treeThick,
+        class: "wood-120"
+      },
+      { // Regal 14
+        width: m.treeThick, height: m.height - 2*m.treeThick,
+        // x: m.wallWidth + 3*600 + m.northWindow.width + 2*m.treeThick + 3*600 + m.kitchenWindow.width, y: m.treeThick,
+        x: m.length - m.treeThick - m.wallWidth, y: m.treeThick,
+        class: "wood-120"
+      },
+      { // Regal 15
         width: m.treeThick, height: m.height - 2*m.treeThick,
         x: m.length - m.treeThick, y: m.treeThick,
         class: "wood-120"
